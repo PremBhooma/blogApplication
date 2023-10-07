@@ -5,7 +5,22 @@
     width: 80%;
     margin: 40px auto; 
 }
+.box > div > a {
+    text-decoration: none;
+    color: black;
+}
+.box > div > a:hover {
+    color: skyblue;
+}
 
-.box div img{
-    width: 50%;
+.box > div > a > img{
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px
+}
+
+.box > div > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

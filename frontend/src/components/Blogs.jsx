@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Blogs.css";
+import { Link as RouterLink } from "react-router-dom";
 
 const Blogs = () => {
   const [item, setItem] = useState([]);
@@ -20,17 +21,28 @@ const Blogs = () => {
 
   return (
     <div className="box">
-      {item?.map((elem) => {
-        const base64String = btoa(
-          String.fromCharCode(...new Uint8Array(elem.img.data.data))
-        );
+      {item.map((elem) => {
+        const base64String = arrayBufferToBase64(elem.img.data.data);
         return (
           <div key={elem._id}>
-            <img src={`data:image/png;base64,${base64String}`} />
-            <h1>{elem.title}</h1>
+            <RouterLink to={`/blog/${elem._id}`}>
+              <img
+                src={`data:image/png;base64,${base64String}`}
+                alt={elem.title}
+              />
+              <h4>{elem.title}</h4>
+            </RouterLink>
             <div>
-              <p>{elem.author_name}</p>
               <p>
+                <span>
+                  <i class="fa-solid fa-user"></i>
+                </span>{" "}
+                {elem.author_name}
+              </p>
+              <p>
+                <span>
+                  <i class="fa-solid fa-calendar-days"></i>
+                </span>{" "}
                 {elem.postDate} {elem.postTime}
               </p>
             </div>
@@ -40,5 +52,15 @@ const Blogs = () => {
     </div>
   );
 };
+
+// Function to convert an ArrayBuffer to a base64 string
+function arrayBufferToBase64(buffer) {
+  let binary = "";
+  const bytes = new Uint8Array(buffer);
+  for (let i = 0; i < bytes.byteLength; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
 
 export default Blogs;
