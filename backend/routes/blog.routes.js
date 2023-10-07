@@ -43,7 +43,7 @@ blogRouter.post("/create", upload.single('image'), async (req, res) => {
         description,
         author_name: name,
         author_email: email,
-        image: req.file.path // Assigned the image path 
+        image: req.file.path
     })
 
     try {
@@ -55,6 +55,54 @@ blogRouter.post("/create", upload.single('image'), async (req, res) => {
     }
 })
 
+
+blogRouter.put("/edit/:blogID", async (req, res) => {
+    try {
+        const blogID = req.params.blogID
+        const payload = req.body;
+
+        const user_id = req.user_id
+        const user = await UserModel.findOne({ _id: user_id })
+        const user_email = user.email;
+        // console.log(user_email)
+
+        const blog = await BlogModel.findOne({ _id: blogID })
+        const blog_author_email = blog.author_email
+        // console.log(blog_author_email)
+
+        if (user_email !== blog_author_email) {
+            res.send({ msg: "Unauthorized" })
+        } else {
+            await BlogModel.findByIdAndUpdate(blogID, payload)
+            res.status(200).send({ msg: `Blog ${blogID} Updated` })
+        }
+    } catch (err) {
+        console.log(err)
+        res.send({ msg: "Update Failed" })
+    }
+})
+
+blogRouter.delete("/delete/:blogID", async (req, res) => {
+    try {
+        const blogID = req.params.blogID
+
+        const user_id = req.user_id
+        const user = await UserModel.findOne({ _id: user_id })
+        const user_email = user.email;
+
+        const blog = await BlogModel.findOne({ _id: blogID })
+        const blog_author_email = blog.author_email
+
+        if (user_email !== blog_author_email) {
+            res.send({ msg: "Unauthorized" })
+        } else {
+            await BlogModel.findByIdAndDelete(blogID)
+            res.status(200).send({ msg: `Blog ${blogID} Deleted` })
+        }
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 
 module.exports = {
