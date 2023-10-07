@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs")
 const { connection } = require("./config/db")
 
 const app = express()
+app.use(express.json())
 
 app.get("/", (req, res) => {
     res.send("HomeRoute")
