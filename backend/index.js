@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken")
 const { connection } = require("./config/db")
 const { UserModel } = require("./models/User.model")
 
+require("dotenv").config()
+
 const app = express()
 app.use(express.json())
 
@@ -70,7 +72,7 @@ app.post("/login", async (req, res) => {
                 let token = jwt.sign({ user_id: user._id }, process.env.SECRET_KEY);
                 res.send({ msg: "Login Successful", token: token })
             } else {
-                res.send({ msg: "Login Failed" })
+                res.send({ msg: "Invalid Credentials" })
             }
         });
     }
