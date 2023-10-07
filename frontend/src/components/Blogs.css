@@ -1,0 +1,11 @@
+.box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 80%;
+    margin: 40px auto; 
+}
+
+.box div img{
+    width: 50%;
+}
