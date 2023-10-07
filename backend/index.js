@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken")
 
 const { connection } = require("./config/db")
 const { UserModel } = require("./models/User.model")
+const { blogRouter } = require("./routes/blog.routes")
+const { authentication } = require("./middlewares/authentication")
 
 require("dotenv").config()
 
@@ -77,6 +79,8 @@ app.post("/login", async (req, res) => {
         });
     }
 })
+
+app.use("/blogs", blogRouter, authentication)
 
 app.listen(8021, async () => {
     try {
