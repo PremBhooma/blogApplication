@@ -4,6 +4,7 @@ import Blogs from "../components/Blogs";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Singleblog from "../components/Singleblog";
+import BlogCreate from "../pages/BlogCreate";
 
 export const AllRoutes = () => {
   return (
@@ -15,6 +16,7 @@ export const AllRoutes = () => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/blog/:_id" element={<Singleblog />}></Route>
+          <Route path="/blog/create" element={<BlogCreate />}></Route>
         </Routes>
       }
     </div>
