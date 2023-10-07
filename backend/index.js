@@ -2,6 +2,7 @@ const express = require("express")
 const bcrypt = require("bcryptjs")
 
 const { connection } = require("./config/db")
+const { UserModel } = require("./models/User.model")
 
 const app = express()
 app.use(express.json())
@@ -12,7 +13,7 @@ app.get("/", (req, res) => {
 
 app.post("/signup", (req, res) => {
     let { name, email, password } = req.body
-    console.log(req.body)
+    // console.log(req.body)
     bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(password, 3, async function (err, hash) {
             const new_user = new UserModel({
