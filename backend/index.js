@@ -9,6 +9,27 @@ app.get("/", (req, res) => {
     res.send("HomeRoute")
 })
 
+app.post("/signup", (req, res) => {
+    let { name, email, password } = req.body
+    console.log(req.body)
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(password, 3, async function (err, hash) {
+            const new_user = new UserModel({
+                name,
+                email,
+                password: hash,
+            })
+            try {
+                await new_user.save()
+                res.send({ msg: "Signup Successful" })
+            } catch (error) {
+                console.log(error)
+                res.status(500).send({ msg: "Something Went Wrong" })
+            }
+        });
+    });
+})
+
 app.listen(8021, async () => {
     try {
         await connection
