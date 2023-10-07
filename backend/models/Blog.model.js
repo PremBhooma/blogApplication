@@ -4,7 +4,7 @@ const moment = require("moment");
 const blogScheme = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    image: { type: String, required: true },
+    img: { data: Buffer, contentType: String },
     author_name: { type: String },
     author_email: { type: String },
     postDate: { type: String, default: moment().format("DD/MM/YYYY") },

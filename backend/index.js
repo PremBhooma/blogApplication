@@ -1,16 +1,21 @@
 const express = require("express")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const cors = require("cors")
 
 const { connection } = require("./config/db")
 const { UserModel } = require("./models/User.model")
 const { blogRouter } = require("./routes/blog.routes")
-const { authentication } = require("./middlewares/authentication")
+// const { authentication } = require("./middlewares/authentication")
 
 require("dotenv").config()
 
+
 const app = express()
 app.use(express.json())
+app.use(cors({
+    origin: "*"
+}))
 
 app.get("/", (req, res) => {
     res.send("HomeRoute")
@@ -80,7 +85,7 @@ app.post("/login", async (req, res) => {
     }
 })
 
-app.use("/blogs", authentication, blogRouter)
+app.use("/blogs", blogRouter)
 
 app.listen(8021, async () => {
     try {

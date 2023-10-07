@@ -1,9 +1,11 @@
 const { Router } = require("express")
 const multer = require("multer")
 const path = require('path')
+const fs = require("fs")
 
 const { UserModel } = require("../models/User.model")
 const { BlogModel } = require("../models/Blog.model")
+const { authentication } = require("../middlewares/authentication")
 
 const blogRouter = Router()
 
@@ -12,27 +14,27 @@ blogRouter.get("/", async (req, res) => {
     res.send({ blogs: blogs })
 })
 
+blogRouter.get("/:_id", async (req, res) => {
+    const blogs = await BlogModel.findOne({ _id: req.params._id })
+    res.send({ blogs: blogs })
+})
 
-const Storage = multer.diskStorage({
-    destination: 'uploads',
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads")
+    },
     filename: function (req, file, cb) {
-        let ext = path.extname(file.originalname)
-        cb(null, Date.now() + ext)
-    }
+        cb(null, file.originalname)
+    },
 })
 
 const upload = multer({
-    storage: Storage
+    storage: storage
 })
 
-blogRouter.post("/create", upload.single('image'), async (req, res) => {
+blogRouter.post("/create", upload.single('testImage'), authentication, async (req, res) => {
     const { title, description } = req.body
-
-    if (!req.file) {
-        return res.status(400).send({ error: "No image file uploaded." });
-    }
-
-    const { image } = req.file
 
     const author_id = req.user_id
     const user = await UserModel.findOne({ _id: author_id })
@@ -41,9 +43,12 @@ blogRouter.post("/create", upload.single('image'), async (req, res) => {
     const new_blog = new BlogModel({
         title,
         description,
+        img: {
+            data: fs.readFileSync("uploads/" + req.file.filename),
+            contentType: "image/png",
+        },
         author_name: name,
         author_email: email,
-        image: req.file.path
     })
 
     try {
