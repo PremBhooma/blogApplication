@@ -7,6 +7,11 @@ const { BlogModel } = require("../models/Blog.model")
 
 const blogRouter = Router()
 
+blogRouter.get("/", async (req, res) => {
+    const blogs = await BlogModel.find()
+    res.send({ blogs: blogs })
+})
+
 
 const Storage = multer.diskStorage({
     destination: 'uploads',
@@ -49,6 +54,8 @@ blogRouter.post("/create", upload.single('image'), async (req, res) => {
         console.log(err)
     }
 })
+
+
 
 module.exports = {
     blogRouter

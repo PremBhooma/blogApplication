@@ -80,7 +80,7 @@ app.post("/login", async (req, res) => {
     }
 })
 
-app.use("/blogs", blogRouter, authentication)
+app.use("/blogs", authentication, blogRouter)
 
 app.listen(8021, async () => {
     try {
