@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 const Singleblog = () => {
   const { _id } = useParams();
 
-  const [item, setItem] = useState([]);
+  const [item, setItem] = useState({});
 
   const getData = async () => {
     try {
@@ -18,13 +18,29 @@ const Singleblog = () => {
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [_id]);
 
-  const base64String = arrayBufferToBase64(item.img.data.data);
+  const base64String = arrayBufferToBase64(item.img?.data?.data || []);
 
   return (
     <div>
       <img src={`data:image/png;base64,${base64String}`} alt={item.title} />
+      <div>
+        <p>
+          <span>
+            <i class="fa-solid fa-user"></i>
+          </span>{" "}
+          {item.author_name}
+        </p>
+        <p>
+          <span>
+            <i class="fa-solid fa-calendar-days"></i>
+          </span>{" "}
+          {item.postDate} {item.postTime}
+        </p>
+      </div>
+      <h3>{item.title}</h3>
+      <p>{item.description}</p>
     </div>
   );
 };
