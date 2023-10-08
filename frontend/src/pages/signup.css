@@ -24,4 +24,19 @@
 .signupform > div > input,
 button {
   padding: 8px;
+  border-radius: 5px;
+  border: none;
+  border-bottom: 5px solid #3f78e0;
+  outline: none;
+}
+
+.signupform > div > button {
+  font-weight: 500;
+  border: none;
+  border-bottom: 5px solid #3f78e0;
+}
+
+.signupform > div > button:hover {
+  background-color: #3f78e0;
+  color: white;
 }

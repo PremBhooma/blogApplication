@@ -4,9 +4,7 @@ import { AuthContext } from "../Routes/AuthContext";
 import "./Header.css";
 
 const Header = () => {
-  // const [login, setLogin] = useState(localStorage.getItem("token") || null);
   const { token, setToken } = useContext(AuthContext);
-  // const [logout, setLogout] = useState(localStorage.getItem("token") || null);
 
   return (
     <div className="headStyle">

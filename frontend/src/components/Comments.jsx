@@ -68,9 +68,25 @@ const Comments = ({ _id, author_name, author_email }) => {
         <button onClick={handleCommentSubmit}>Submit Comment</button>
       </div>
       <div className="get-comment mt-4">
-        <h1>Comments Section</h1>
+        <h3>Comments Section</h3>
         {data?.map((elem) => (
-          <p>{elem.text}</p>
+          <div key={elem._id}>
+            <p>
+              <span>
+                <i class="fa-solid fa-user"></i>
+              </span>{" "}
+              <span className="fs-5">{elem.author_name}</span> commented at{" "}
+              {elem.postDate} {elem.postTime}
+            </p>
+            <div className="commBox">
+              <p>
+                <span>
+                  <i class="fa-solid fa-comment-dots"></i>
+                </span>{" "}
+                {elem.text}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
     </>

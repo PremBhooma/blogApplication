@@ -16,6 +16,28 @@ const Signup = () => {
       password,
     };
 
+    if (!name || !email || !password) {
+      return alert("Please provide all required fields.");
+    }
+
+    if (password.length < 4 || password.length > 10) {
+      return alert("Password must be between 4 and 10 characters.");
+    }
+
+    const passwordPattern =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+    if (!passwordPattern.test(password)) {
+      return alert(
+        "Password must contain at least one alphabet character, one numeric character, and one special symbol."
+      );
+    }
+
+    // Validation for Check the email format
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailPattern.test(email)) {
+      return alert("Invalid email format.");
+    }
+
     fetch("http://localhost:8021/signup", {
       method: "POST",
       headers: {
@@ -24,10 +46,11 @@ const Signup = () => {
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        navigate(`/login`);
+      })
       .catch((err) => console.log(err));
-
-    navigate(`/login`);
   };
 
   return (

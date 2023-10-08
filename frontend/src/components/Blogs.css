@@ -10,7 +10,7 @@
   color: black;
 }
 .box > div > div:nth-child(1) > a:hover {
-  color: skyblue;
+  color: #3f78e0;
 }
 
 /* .box > div > div:nth-child(1) {
@@ -37,7 +37,7 @@
 }
 
 .txtAnch > a:hover {
-  color: skyblue;
+  color: #3f78e0;
 }
 
 .txtAnch > a > div > img {
@@ -105,4 +105,19 @@
 
 .singleBlog > p {
   text-align: justify;
+}
+
+.singleBlog > .btnHid {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btnHid > button {
+  width: 10%;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+.btnHid > button:hover {
+  background-color: #3f78e0;
+  color: white;
 }

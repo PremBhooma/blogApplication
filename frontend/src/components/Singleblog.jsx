@@ -27,7 +27,15 @@ const Singleblog = () => {
   return (
     <div className="singleBlog">
       {item.author_email === localStorage.getItem("user") && (
-        <button>Edit</button>
+        <div className="btnHid mb-3">
+          <button
+            onClick={() =>
+              alert("Sorry for Inconvenience. The Page is Under Construction")
+            }
+          >
+            Edit
+          </button>
+        </div>
       )}
       <img src={`data:image/png;base64,${base64String}`} alt={item.title} />
       <div className="mt-2">

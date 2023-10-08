@@ -12,3 +12,13 @@
 .formHandle > form > h3 {
   text-align: center;
 }
+
+.formHandle > form > button {
+  font-weight: 600;
+}
+
+.formHandle > form > button:hover {
+  background-color: #3f78e0;
+  color: white;
+  font-weight: 600;
+}

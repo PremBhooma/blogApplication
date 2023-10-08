@@ -18,3 +18,14 @@
   font-weight: 600;
   color: #3f78e0;
 }
+
+.get-comment > div > p {
+  font-weight: 600;
+}
+
+.commBox {
+  padding: 15px;
+  background-color: #f0f8fe;
+  font-size: 16px;
+  border-radius: 10px;
+}
