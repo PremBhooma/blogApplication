@@ -19,14 +19,17 @@ const BlogCreate = () => {
     formData.append("testImage", testImage);
 
     try {
-      const response = await fetch(`http://localhost:8021/blogs/create`, {
-        method: "POST",
-        headers: {
-          // "Content-type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: formData,
-      });
+      const response = await fetch(
+        `https://blogapi-8ua6.onrender.com/blogs/create`,
+        {
+          method: "POST",
+          headers: {
+            // "Content-type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: formData,
+        }
+      );
       if (response.ok) {
         console.log("Blog created successfully");
         setTitle("");

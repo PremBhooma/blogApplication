@@ -8,7 +8,7 @@ const Blogs = () => {
 
   const getData = async () => {
     try {
-      const res = await fetch(`http://localhost:8021/blogs`);
+      const res = await fetch(`https://blogapi-8ua6.onrender.com/blogs`);
       const data = await res.json();
       console.log(data.blogs);
       setItem(data.blogs);

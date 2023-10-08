@@ -19,13 +19,16 @@ const Comments = ({ _id, author_name, author_email }) => {
       };
 
       try {
-        const res = await fetch(`http://localhost:8021/blogs/${_id}/create`, {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        });
+        const res = await fetch(
+          `https://blogapi-8ua6.onrender.com/blogs/${_id}/create`,
+          {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
         const commentItem = await res.json();
         console.log(commentItem);
         getComment();
@@ -42,7 +45,9 @@ const Comments = ({ _id, author_name, author_email }) => {
 
   const getComment = async () => {
     try {
-      const res = await fetch(`http://localhost:8021/blogs/${_id}/getcomment`);
+      const res = await fetch(
+        `https://blogapi-8ua6.onrender.com/blogs/${_id}/getcomment`
+      );
       const item = await res.json();
       console.log(item.comment);
       setData(item.comment);

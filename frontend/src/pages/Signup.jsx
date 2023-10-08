@@ -38,7 +38,7 @@ const Signup = () => {
       return alert("Invalid email format.");
     }
 
-    fetch("http://localhost:8021/signup", {
+    fetch("https://blogapi-8ua6.onrender.com/signup", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

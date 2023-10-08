@@ -39,7 +39,7 @@ const Login = () => {
       return alert("Invalid email format.");
     }
 
-    fetch("http://localhost:8021/login", {
+    fetch("https://blogapi-8ua6.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
