@@ -87,7 +87,7 @@
   margin: 40px auto;
 }
 
-.singleBlog > div {
+.singleBlog > div:nth-child(2) {
   display: flex;
   gap: 30px;
   align-items: center;

@@ -28,6 +28,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.token);
+        localStorage.setItem("user", email);
         setToken(res.token);
       })
       .catch((err) => console.log(err));

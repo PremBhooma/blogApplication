@@ -41,6 +41,7 @@ const Header = () => {
                       to={"/"}
                       onClick={() => {
                         localStorage.clear("token");
+                        localStorage.clear("user");
                         setToken(null);
                       }}
                     >

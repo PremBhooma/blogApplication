@@ -1,0 +1,20 @@
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.comment-section > textarea {
+  border: none;
+}
+
+.comment-section > button {
+  width: 15%;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.comment-section > button:hover {
+  font-weight: 600;
+  color: #3f78e0;
+}

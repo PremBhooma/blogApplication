@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./BlogCreate.css";
+import { useNavigate } from "react-router-dom";
 
 const BlogCreate = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [testImage, setTestImage] = useState();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,10 +29,10 @@ const BlogCreate = () => {
       });
       if (response.ok) {
         console.log("Blog created successfully");
-        // Optionally, you can reset the form fields here
         setTitle("");
         setDescription("");
         setTestImage(null);
+        navigate(`/`);
       } else {
         console.error("Failed to create blog");
       }

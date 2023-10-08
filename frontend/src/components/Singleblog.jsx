@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Blogs.css";
+import Comments from "./Comments";
 
 const Singleblog = () => {
   const { _id } = useParams();
@@ -25,6 +26,9 @@ const Singleblog = () => {
 
   return (
     <div className="singleBlog">
+      {item.author_email === localStorage.getItem("user") && (
+        <button>Edit</button>
+      )}
       <img src={`data:image/png;base64,${base64String}`} alt={item.title} />
       <div className="mt-2">
         <p>
@@ -42,6 +46,12 @@ const Singleblog = () => {
       </div>
       <h3>{item.title}</h3>
       <p>{item.description}</p>
+      {console.log(_id)}
+      <Comments
+        _id={item._id}
+        author_name={item.author_name}
+        author_email={item.author_email}
+      />
     </div>
   );
 };
