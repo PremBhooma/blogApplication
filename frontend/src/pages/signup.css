@@ -43,17 +43,6 @@ button {
 
 /* Media Query */
 
-/* .signupform > div {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  padding: 55px 30px;
-  border-radius: 10px;
-  width: 100%;
-  margin: 50px auto;
-} */
-
 @media all and (min-width: 320px) and (max-width: 767px) {
   .signupform > div {
     width: 100%;
