@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./Blogs.css";
 
 const Singleblog = () => {
   const { _id } = useParams();
@@ -23,9 +24,9 @@ const Singleblog = () => {
   const base64String = arrayBufferToBase64(item.img?.data?.data || []);
 
   return (
-    <div>
+    <div className="singleBlog">
       <img src={`data:image/png;base64,${base64String}`} alt={item.title} />
-      <div>
+      <div className="mt-2">
         <p>
           <span>
             <i class="fa-solid fa-user"></i>

@@ -1,23 +1,27 @@
-.signupform{
-    width: 80%;
-    margin: 50px auto;
+.signupform {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: 74px auto;
+  align-items: center;
 }
 
-.signupform > div{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    padding: 55px 30px;
-    border-radius: 10px;
-    width: 35%;
-    margin: 50px auto;
+.signupform > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 55px 30px;
+  border-radius: 10px;
+  width: 35%;
+  margin: 50px auto;
 }
 
-.signupform > div > h3{
-    text-align: center;
+.signupform > div > h3 {
+  text-align: center;
 }
 
-.signupform > div > input, button{
-    padding: 8px;
+.signupform > div > input,
+button {
+  padding: 8px;
 }

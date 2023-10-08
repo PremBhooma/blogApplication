@@ -1,26 +1,108 @@
-.box{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    width: 80%;
-    margin: 40px auto; 
+.box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 80%;
+  margin: 40px auto;
 }
-.box > div > a {
-    text-decoration: none;
-    color: black;
+.box > div > div:nth-child(1) a {
+  text-decoration: none;
+  color: black;
 }
-.box > div > a:hover {
-    color: skyblue;
-}
-
-.box > div > a > img{
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 20px
+.box > div > div:nth-child(1) > a:hover {
+  color: skyblue;
 }
 
-.box > div > div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* .box > div > div:nth-child(1) {
+  width: 80%;
+} */
+
+.box > div > div:nth-child(1) > a > div > img {
+  width: 100%;
+  height: 270px;
+  object-fit: fill;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.box > div > div:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.txtAnch > a {
+  text-decoration: none;
+  color: black;
+}
+
+.txtAnch > a:hover {
+  color: skyblue;
+}
+
+.txtAnch > a > div > img {
+  object-fit: fill;
+  padding: 0;
+  border: none;
+  height: 230px;
+}
+.Author {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #888;
+  font-size: 14px;
+  margin-top: -5px;
+}
+
+/* Banner CSS */
+
+.Banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8fe;
+  height: 500px;
+}
+.Banner h1 {
+  font-size: 80px;
+  letter-spacing: 10px;
+  margin-bottom: 15px;
+}
+
+.Banner p {
+  width: 50%;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 4px;
+}
+
+/* Single Blog */
+
+.singleBlog {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 40px auto;
+}
+
+.singleBlog > div {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  color: #888;
+  font-size: 14px;
+}
+
+.singleBlog > img {
+  border-radius: 10px;
+}
+
+.singleBlog > h3 {
+  text-align: center;
+}
+
+.singleBlog > p {
+  text-align: justify;
 }

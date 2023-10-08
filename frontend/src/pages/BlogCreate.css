@@ -1,0 +1,14 @@
+.formHandle > form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 30%;
+  margin: 100px auto;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 45px 30px;
+  border-radius: 8px;
+}
+
+.formHandle > form > h3 {
+  text-align: center;
+}

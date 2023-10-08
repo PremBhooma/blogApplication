@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Routes/AuthContext";
+import "./Header.css";
 
 const Header = () => {
   // const [login, setLogin] = useState(localStorage.getItem("token") || null);
@@ -8,11 +9,11 @@ const Header = () => {
   // const [logout, setLogout] = useState(localStorage.getItem("token") || null);
 
   return (
-    <div>
+    <div className="headStyle">
       {/* Navbar Start */}
       <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <a className="navbar-brand">
+          <a className="navbar-brand fw-bolder fs-2">
             <Link to={"/"}>MyBlog</Link>
           </a>
           <button
@@ -28,7 +29,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             {token ? (
-              <ul className="navbar-nav ms-auto">
+              <ul className="navbar-nav ms-auto fw-medium">
                 <li className="nav-item">
                   <a className="nav-link">
                     <Link to={"/blog/create"}>Create Blog</Link>
@@ -49,7 +50,7 @@ const Header = () => {
                 </li>
               </ul>
             ) : (
-              <ul className="navbar-nav ms-auto">
+              <ul className="navbar-nav ms-auto fw-medium">
                 <li className="nav-item">
                   <a className="nav-link">
                     <Link to={"/login"}>Login</Link>
