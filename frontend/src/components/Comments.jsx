@@ -75,8 +75,7 @@ const Comments = ({ _id, author_name, author_email }) => {
               <span>
                 <i class="fa-solid fa-user"></i>
               </span>{" "}
-              <span className="fs-5">{elem.author_name}</span> commented at{" "}
-              {elem.postDate} {elem.postTime}
+              Commented at {elem.postDate} {elem.postTime}
             </p>
             <div className="commBox">
               <p>
