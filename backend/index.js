@@ -77,7 +77,7 @@ app.post("/login", async (req, res) => {
         bcrypt.compare(password, hash_password, function (err, result) {
             if (result) {
                 let token = jwt.sign({ user_id: user._id }, process.env.SECRET_KEY);
-                res.send({ msg: "Login Successful", token: token })
+                res.send({ msg: "Login Successful", token: token, user: user.email })
             } else {
                 res.send({ msg: "Invalid Credentials" })
             }
@@ -86,6 +86,8 @@ app.post("/login", async (req, res) => {
 })
 
 app.use("/blogs", blogRouter)
+// app.use("/comment", commentRouter)
+
 
 app.listen(8021, async () => {
     try {
