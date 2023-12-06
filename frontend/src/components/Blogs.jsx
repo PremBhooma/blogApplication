@@ -5,13 +5,16 @@ import Banner from "./Banner";
 
 const Blogs = () => {
   const [item, setItem] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getData = async () => {
     try {
+      setLoading(true);
       const res = await fetch(`https://blogapi-8ua6.onrender.com/blogs`);
       const data = await res.json();
       console.log(data.blogs);
       setItem(data.blogs);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -24,47 +27,55 @@ const Blogs = () => {
     <>
       <Banner />
 
-      <div className="container">
-        <div className="row">
-          {item.map((elem) => {
-            const base64String = arrayBufferToBase64(elem.img.data.data);
-            return (
-              <div className="col-md-4 mt-4">
-                <div key={elem._id}>
-                  <div className="txtAnch">
-                    <RouterLink to={`/blog/${elem._id}`}>
-                      <div>
-                        <img
-                          class="img-thumbnail"
-                          src={`data:image/png;base64,${base64String}`}
-                          alt={elem.title}
-                        />
+      {loading ? (
+        <div className="skeletonLoad">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <>
+          <div className="container">
+            <div className="row">
+              {item.map((elem) => {
+                const base64String = arrayBufferToBase64(elem.img.data.data);
+                return (
+                  <div className="col-md-4 mt-4">
+                    <div key={elem._id}>
+                      <div className="txtAnch">
+                        <RouterLink to={`/blog/${elem._id}`}>
+                          <div>
+                            <img
+                              class="img-thumbnail"
+                              src={`data:image/png;base64,${base64String}`}
+                              alt={elem.title}
+                            />
+                          </div>
+
+                          <h4 className="mt-3">{elem.title}</h4>
+                        </RouterLink>
                       </div>
 
-                      <h4 className="mt-3">{elem.title}</h4>
-                    </RouterLink>
+                      <div className="Author">
+                        <p>
+                          <span>
+                            <i class="fa-solid fa-user"></i>
+                          </span>{" "}
+                          {elem.author_name}
+                        </p>
+                        <p>
+                          <span>
+                            <i class="fa-solid fa-calendar-days"></i>
+                          </span>{" "}
+                          {elem.postDate} {elem.postTime}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-
-                  <div className="Author">
-                    <p>
-                      <span>
-                        <i class="fa-solid fa-user"></i>
-                      </span>{" "}
-                      {elem.author_name}
-                    </p>
-                    <p>
-                      <span>
-                        <i class="fa-solid fa-calendar-days"></i>
-                      </span>{" "}
-                      {elem.postDate} {elem.postTime}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
