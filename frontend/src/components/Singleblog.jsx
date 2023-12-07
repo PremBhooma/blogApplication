@@ -7,13 +7,16 @@ const Singleblog = () => {
   const { _id } = useParams();
 
   const [item, setItem] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const getData = async () => {
     try {
+      setLoading(true);
       const res = await fetch(`https://blogapi-8ua6.onrender.com/blogs/${_id}`);
       const data = await res.json();
       console.log(data.blogs);
       setItem(data.blogs);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -37,24 +40,31 @@ const Singleblog = () => {
           </button>
         </div>
       )}
-      <img src={`data:image/png;base64,${base64String}`} alt={item.title} />
-      <div className="mt-2">
-        <p>
-          <span>
-            <i class="fa-solid fa-user"></i>
-          </span>{" "}
-          {item.author_name}
-        </p>
-        <p>
-          <span>
-            <i class="fa-solid fa-calendar-days"></i>
-          </span>{" "}
-          {item.postDate} {item.postTime}
-        </p>
-      </div>
-      <h3>{item.title}</h3>
-      <p>{item.description}</p>
-      {console.log(_id)}
+      {loading ? (
+        <div className="skeletonLoad">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <>
+          <img src={`data:image/png;base64,${base64String}`} alt={item.title} />
+          <div className="mt-2">
+            <p>
+              <span>
+                <i class="fa-solid fa-user"></i>
+              </span>{" "}
+              {item.author_name}
+            </p>
+            <p>
+              <span>
+                <i class="fa-solid fa-calendar-days"></i>
+              </span>{" "}
+              {item.postDate} {item.postTime}
+            </p>
+          </div>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </>
+      )}
       <Comments
         _id={item._id}
         author_name={item.author_name}
